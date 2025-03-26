@@ -1,0 +1,12 @@
+---
+- name: Get Public IP using curl
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Run curl command to get public IP
+      command: curl -s ifconfig.co
+      register: public_ip
+
+    - name: Print Public IP
+      debug:
+        msg: "Public IP is {{ public_ip.stdout }}"
